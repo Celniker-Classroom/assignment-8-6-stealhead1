@@ -16,7 +16,7 @@ function $(id) { return document.getElementById(id); }
 function setText(id, value) { $(id).textContent = String(value); }
 
 // ----- Click Handlers (wire UI -> functions -> DOM) -----
-
+var counter = 0;
 function onMyFuncClick() {
   const val = myFunc();
   setText('outMyFunc', val);
@@ -46,4 +46,42 @@ function onQuadraticClick() {
   const a = $('qa').value, b = $('qb').value, c = $('qc').value;
   const roots = quadratic(a, b, c);
   setText('outQuadratic', Array.isArray(roots) ? roots.join(', ') : roots);
+}
+
+function myFunc() {
+  counter++;
+  return counter
+}
+
+function getRandomNum(max) {
+  if (max <= 0 || parseInt(max) !== parseInt(max)) {
+    return 0;
+  }
+  else if (max > 0) {
+    return Math.ceil(Math.random() * max);
+  }
+}
+
+function myAdder(x, y) {
+  return parseInt(x) + parseInt(y);
+}
+
+function distance(x1, y1, x2, y2) {
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+}
+
+function quadratic(a, b, c) {
+  const solutions = [];
+  if (b ** 2 - 4 * a * c < 0) {
+    solutions[0] = -b / (2 * a) + '+' + Math.sqrt(-(b ** 2 - 4 * a * c)) / (2 * a) + 'i'
+    solutions[1] = -b / (2 * a) + '-' + Math.sqrt(-(b ** 2 - 4 * a * c)) / (2 * a) + 'i'
+  }
+  else if (b ** 2 - 4 * a * c > 0) {
+    solutions[0] = (-b + Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
+    solutions[1] = (-b - Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
+  }
+  else if (b ** 2 - 4 * a * c == 0) {
+    solutions[0] = -b / (2 * a);
+  }
+  return solutions;
 }
