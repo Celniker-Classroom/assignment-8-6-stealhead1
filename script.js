@@ -47,40 +47,47 @@ function onQuadraticClick() {
   const roots = quadratic(a, b, c);
   setText('outQuadratic', Array.isArray(roots) ? roots.join(', ') : roots);
 }
-
+// increments counter
 function myFunc() {
   counter++;
   return counter
 }
 
+// returns valid number
 function getRandomNum(max) {
+  //checks for invalid inputs
   if (max <= 0 || parseInt(max) !== parseInt(max)) {
     return 0;
   }
+  // if input is valid, makes a random number
   else if (max > 0) {
     return Math.ceil(Math.random() * max);
   }
 }
-
+  // add 2 numbers
 function myAdder(x, y) {
   return parseInt(x) + parseInt(y);
 }
 
+// distance formula between points (x1,y1)(x2,y2)
 function distance(x1, y1, x2, y2) {
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
-
+//the quadratic formula
 function quadratic(a, b, c) {
   const solutions = [];
   if (b ** 2 - 4 * a * c < 0) {
+    // factors out an i then converts parts into strings to display
     solutions[0] = -b / (2 * a) + '+' + Math.sqrt(-(b ** 2 - 4 * a * c)) / (2 * a) + 'i'
     solutions[1] = -b / (2 * a) + '-' + Math.sqrt(-(b ** 2 - 4 * a * c)) / (2 * a) + 'i'
   }
   else if (b ** 2 - 4 * a * c > 0) {
+    //does the formula
     solutions[0] = (-b + Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
     solutions[1] = (-b - Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
   }
   else if (b ** 2 - 4 * a * c == 0) {
+    //finds one solution since discriminant is 0
     solutions[0] = -b / (2 * a);
   }
   return solutions;
